@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light gradient-background">
+        <a class="navbar-brand" href="#">
+          <img src="assets/realestateindia-icon.png" alt="Logo" height="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/property/:id">Buy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/property/Add">Rent</a>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" (click)="getAll()">Property</button>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Agent</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login/SignUp</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h6>Residential Land / Plots for Sale in Chennai</h6><hr>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Property</li>
+          </ol>
+        </nav>
+        <div class="row">
+        <div class="col-9">
+            <div class="card mt-2" *ngFor="let a of property">
+              <div class="card-header">
+                <button class="btn btn-primary" (click)="put(a.propertyId)">Update</button>
+                <button class="btn btn-danger" (click)="delete(a.propertyId)">Delete</button>
+              </div>
+                <div class="card-title">
+                    <h2 class="ml-3">{{a.propertyName}}</h2>
+                </div>
+                <div class="card-body">
+                    <h6>Description:</h6>{{a.propertyPrice}}
+                    <h6>Localities:</h6>{{a.propertyLocation}}
+                    <h6>Address:</h6>{{a.propertyBHK}}
+                </div>
+                <div class="card-footer">
+                    Mobile:{{a.propertyStatus}} &nbsp;&nbsp;&nbsp;
+                    Email:{{a.propertyType}} &nbsp;&nbsp;
+                    Agent Rating:{{a.propertyReside}} &nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+          <div class="card sticky-card  mt-2">
+            <img class="card-img-top img-fluid img-thumbnail card-img" src="assets/reciPlot.png" alt="Card image cap">
+            <div class="card-body">
+            <h4>Advertising Card</h4>
+            <p>This is an advertisement for properties.</p>
+            <a routerLink="/property/add/A" class="btn btn-primary">Add+</a>
+            </div>
+          </div>
+        </div>  
+        </div>
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="id">ID:</label>
+                <input type="number" id="id" class="form-control" [(ngModel)]="id">
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="getId()">Filter</button>
+<div *ngIf="property ; else el">
+    <div class="col-9">
+        <div class="card mt-5">
+            <div class="card-title">
+                <h2 class="ml-3">{{property.propertyName}}</h2>
+            </div>
+            <div class="card-body">
+                <h6>Description:</h6>{{property.propertyPrice}}
+                <h6>Localities:</h6>{{property.propertyLocation}}
+                <h6>Address:</h6>{{property.propertyBHK}}
+            </div>
+            <div class="card-footer">
+                Mobile:{{property.propertyStatus}} &nbsp;&nbsp;&nbsp;
+                Email:{{property.propertyType}} &nbsp;&nbsp;
+                Agent Rating:{{property.propertyReside}} &nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #el>
+    <p style="color: brown;">Enter the correct id</p>
+</ng-template>
+    
+</body>
+</html>

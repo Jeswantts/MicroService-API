@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-image: url('assets/1000_F_210418479_dfvnSwKJFT85JR7JGxxOQbOtQZNuWnlz.jpg');
+      background-size: cover;
+    }
+
+    .container {
+      margin-top: 100px;
+    }
+
+    .card {
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    .footer {
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="assets/realestateindia-icon.png" alt="Logo" height="30" width="144">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login">Already Registered? Login here</a>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">New User Registration</h5>
+        <p class="text-info font-weight-lighter">Create an Account to Avail the Best Real Estate Solutions</p>
+        <form>
+          <div class="form-group">
+            <label for="userName">Name</label>
+            <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="nuser.userName" required  #userName="ngModel">
+            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert">
+              <div *ngIf="userName.errors?.['required']" style="color: red;">
+                Name is required
+              </div>
+              
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="nuser.email" required #email="ngModel">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
+              <div *ngIf="email.errors?.['required']" style="color: red;">
+                Email is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="nuser.password" required minlength="4" #password="ngModel">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+              <div *ngIf="password.errors?.['required']" style="color: red;">
+                Pass is required
+              </div>
+            <div *ngIf="password.errors?.['minlength']" style="color: red;">
+              Pass must be at least 4 characters long
+            </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <select class="custom-select" id="countryCode">
+                  <option value="+1">+1</option>
+                  <option value="+91">+91</option>
+                  <option value="+44">+44</option>
+                  <!-- Add more country codes as needed -->
+                </select>
+              </div>
+              <input type="number" class="form-control" id="mobile" name="mobile" [(ngModel)]="nuser.mobile" required #mobile="ngModel">
+              <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)" class="alert">
+                <div *ngIf="mobile.errors?.['required']" style="color: red;">
+                  Mob is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-check ml-5">
+            <input type="checkbox" class="form-check-input" id="termsCheckbox" required ngModel>
+            <label class="form-check-label" for="termsCheckbox">Yes, I agree to the <a href="terms-conditions.html" target="_blank">Terms & Conditions</a></label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" (click)="post()">Sign Up</button>
+        </form>
+
+        <!-- <form (ngSubmit)="onSubmit()" #signupForm="ngForm" novalidate>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required minlength="5" [(ngModel)]="user.username">
+            <div *ngIf="signupForm.submitted && signupForm.controls.username?.errors?.required" class="text-danger">
+              Username is required.
+            </div>
+            <div *ngIf="signupForm.controls.username?.errors?.minlength" class="text-danger">
+              Username must be at least 5 characters long.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required email [(ngModel)]="user.email">
+            <div *ngIf="signupForm.submitted && signupForm.controls.email?.errors?.required" class="text-danger">
+              Email is required.
+            </div>
+            <div *ngIf="signupForm.controls.email?.errors?.email" class="text-danger">
+              Please enter a valid email address.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <select class="custom-select" id="countryCode">
+                  <option value="+1">+1</option>
+                  <option value="+91">+91</option>
+                  <option value="+44">+44</option>
+                </select>
+              </div>
+              <input type="tel" id="mobile" name="mobile" class="form-control" required pattern="[0-9]{10}" [(ngModel)]="user.mobile">
+            <div *ngIf="signupForm.submitted && signupForm.controls.mobile?.errors?.required" class="text-danger">
+              Mobile number is required.
+            </div>
+            <div *ngIf="signupForm.controls.mobile?.errors?.pattern" class="text-danger">
+              Please enter a valid 10-digit mobile number.
+            </div>
+            </div>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="agree" name="agree" class="form-check-input" required [(ngModel)]="user.agree">
+            <label for="agree" class="form-check-label">I agree to the terms and conditions</label>
+            <div *ngIf="signupForm.submitted && signupForm.controls.agree?.errors?.required" class="text-danger">
+              You must agree to the terms and conditions.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form> -->
+        
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">© 2023 Your Company. All rights reserved.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
+

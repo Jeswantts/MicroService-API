@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+        background-image: url('assets/1000_F_210418479_dfvnSwKJFT85JR7JGxxOQbOtQZNuWnlz.jpg');
+    background-size: cover;
+  }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+    <form (ngSubmit)="post()">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="agentId">Agent ID:</label>
+              <input type="number" id="agentId" name="agentId" class="form-control" [(ngModel)]="nproperty.agentId" placeholder="Enter Agent ID">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="propertyName">Property Name:</label>
+              <input type="text" id="propertyName" name="propertyName" class="form-control" [(ngModel)]="nproperty.propertyName" placeholder="Enter Property Name">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="propertyPrice">Property Price:</label>
+              <input type="number" id="propertyPrice" name="propertyPrice" class="form-control" [(ngModel)]="nproperty.propertyPrice" placeholder="Enter Property Price">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="propertyLocation">Property Location:</label>
+              <input type="text" id="propertyLocation" name="propertyLocation" class="form-control" [(ngModel)]="nproperty.propertyLocation" placeholder="Enter Property Location">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="propertyBHK">Property BHK:</label>
+              <input type="text" id="propertyBHK" name="propertyBHK" class="form-control" [(ngModel)]="nproperty.propertyBHK" placeholder="Enter Property BHK">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="propertyStatus">Property Status:</label>
+              <input type="text" id="propertyStatus" name="propertyStatus" class="form-control" [(ngModel)]="nproperty.propertyStatus" placeholder="Enter Property Status">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="propertyType">Property Type:</label>
+              <input type="text" id="propertyType" name="propertyType" class="form-control" [(ngModel)]="nproperty.propertyType" placeholder="Enter Property Type">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="propertyReside">Property Reside:</label>
+              <input type="text" id="propertyReside" name="propertyReside" class="form-control" [(ngModel)]="nproperty.propertyReside" placeholder="Enter Property Reside">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">ADD</button>
+      </form>
+      </div>
+    </div>
+  </div>
+      
+      
+    
+</body>
+</html>

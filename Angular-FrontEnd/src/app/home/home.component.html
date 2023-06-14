@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light gradient-background">
+    <a class="navbar-brand" href="#">
+      <img src="assets/realestateindia-icon.png" class="m-lg-2" alt="Logo" height="30">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Buy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/property">Property</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/agent">Agents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/signup">Login/SignUp</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+    <div class="container-fluid search">
+      <div class="container">
+      <div class="row pt-5 pb-5">
+        <div class="col-md-12">
+            <form >
+              <div class="row">
+                <div class="col-lg align-items-end">
+                    <label for="location">Location</label>
+                    <div class="form-field">
+                      <input type="text" id="location" name="location" value="location"  [(ngModel)]="location" class="form-control" placeholder="City/Locality Name">
+                    </div>
+                </div>
+                <div class="col-lg align-items-end">
+                    <label for="type">Property Status</label>
+                    <div class="form-field" >
+                        <div class="icon"><span class="ion-ios-arrow-down" id="type" placeholder="Property Type"></span></div>
+                        <select name="type" id="type" [(ngModel)]="type" class="form-control">
+                          <option value="" disabled selected>Type</option>
+                          <option value="rent">Rent</option>
+                          <option value="sale">Sale</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg align-items-end">
+                    <label for="price">Price Limit</label>
+                    <div class="form-field">
+                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                        <select name="price" id="price" [(ngModel)]="price" class="form-control">
+                          <option value="">₹10,00,000</option>
+                          <option value="2000000">₹20,00,000</option>
+                          <option value="4000000">₹40,00,000</option>
+                          <option value="5000000">₹50,00,000</option>
+                          <option value="6000000">₹60,00,000</option>
+                          <option value="7000000">₹70,00,000</option>
+                          <option value="8000000">₹80,00,000</option>
+                          <option value="9000000">₹90,00,000</option>
+                          <option value="10000000">₹1,00,00,000</option>
+                          <option value="20000000">₹2,00,00,000</option>
+                          <option value="30000000">₹3,00,00,000</option>
+                          <option value="40000000">₹4,00,00,000</option>
+                        </select>
+                  </div>
+                </div>
+                <div class="col-lg align-self-end">
+                    <div class="form-field">
+                      <button type="submit" class="form-control btn btn-primary" (click)="Filter()">Submit</button>
+                    </div>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9" *ngIf="properties && properties.length > 0; else noResults">
+          <div class="card mt-5" *ngFor="let a of properties">
+            <div class="card-header bg-primary text-white">
+              <h2 class="ml-3">{{a.propertyName}}</h2>
+            </div>
+            <div class="card-body">
+              <p class="card-text"><strong>Price:</strong> {{a.propertyPrice}}</p>
+              <p class="card-text"><strong>Location:</strong> {{a.propertyLocation}}</p>
+              <p class="card-text"><strong>BHK Type:</strong> {{a.propertyBHK}}</p>
+            </div>
+            <div class="card-footer bg-light d-flex justify-content-between">
+              <div>
+                <p class="mb-0"><strong>Status:</strong> {{a.propertyStatus}}</p>
+              </div>
+              <div>
+                <p class="mb-0"><strong>Type:</strong> {{a.propertyType}}</p>
+              </div>
+              <div>
+                <p class="mb-0"><strong>Reside:</strong> {{a.propertyReside}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #noResults>
+          <p>No results found.</p>
+        </ng-template>
+      </div>
+    </div>
+    
+    
+    
+
+  
+
+<div class="container">
+  <div>
+    <h4>Explore Property in Chennai</h4>
+    <h6 class="mt-4">Residential Properties</h6>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-lg-2">
+      <div class="card mb-4" (mouseover)="setReside('residential plot')" (mouseout)="clearCount()">
+        <img src="assets/reciPlot.png" style="height:12rem;" class="card-img-top card-img" alt="Residential Plot">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Residential Plots</h5>
+          <h4 *ngIf="obje1" class="text-light">{{ obje1 }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+      <div class="card mb-4" (mouseover)="setReside('flats')" (mouseout)="clearCount()">
+        <img src="assets/flat.jpg" style="height:12rem;" class="card-img-top card-img" alt="Flat">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Flats</h5>
+          <h4 *ngIf="obje2" class="text-light">{{ obje2 }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+      <div class="card mb-4" (mouseover)="setReside('house&villas')" (mouseout)="clearCount()">
+        <img src="assets/housevilla.jpg" style="height:12rem;" class="card-img-top card-img" alt="House & Villa">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">House & Villa</h5>
+          <h4 *ngIf="obje3" class="text-light">{{ obje3 }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+      <div class="card mb-4" (mouseover)="setReside('farm house')" (mouseout)="clearCount()">
+        <img src="assets/farmhousejpeg.jpeg" style="height:12rem;" class="card-img-top card-img" alt="Farm House">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Farm House</h5>
+          <h4 *ngIf="obje4" class="text-light">{{ obje4 }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+      <div class="card mb-4" (mouseover)="setReside('penthouse')" (mouseout)="clearCount()">
+        <img src="assets/penthouse.png" style="height:12rem;" class="card-img-top card-img" alt="Penthouse">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Penthouse</h5>
+          <h4 *ngIf="obje5" class="text-light">{{ obje5 }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+      <div class="card mb-4" (mouseover)="setReside('studio apartment')" (mouseout)="clearCount()">
+        <img src="assets/studio-apartments.jpg" style="height:12rem;" class="card-img-top card-img " alt="Studio Apartments">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Studio Apartments</h5>
+          <h4 *ngIf="obje6" class="text-light">{{ obje6 }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h6 class="mt-5">Commercial Properties</h6>
+  <div class="row">
+    <div class="col-md-6 col-lg-3">
+      <div class="card mb-4">
+        <img src="assets/farmland.jpg" style="height: 12rem;" class="card-img-top card-img" alt="Farm Land">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Farm Land</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card mb-4">
+        <img src="assets/Industry.jpg" style="height: 12rem;" class="card-img-top card-img" alt="Industry Land">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Industry Land</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card mb-4">
+        <img src="assets/commercial.jpeg" style="height: 12rem;" class="card-img-top card-img" alt="Commercial Land">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Commercial Land</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card mb-4">
+        <img src="assets/PrivateOffice.jpg" style="height: 12rem;" class="card-img-top card-img" alt="Office Space">
+        <div class="card-img-overlay">
+          <h5 class="card-title text-light">Office Space</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h6 class="mt-5">Choose your BHK type</h6>
+</div>
+<div class="container-fluid bg-primary-subtle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 col-4 mt-4 mb-4">
+        <div class="card bg-primary-subtle border-0" style="height: 5.7rem;">
+          <img src="assets/bhk.png" style="height: 5.7rem; width: 5.7rem;" class="card-img align-items-md-center">
+        </div>
+      </div>
+      <div class="col-md-2 col-4 mt-4 mb-4">
+        <div class="card btn" (click)="setBHK('1rk')">
+          <div class="card-body">
+            <h4>1RHK</h4>
+            <h6 *ngIf="obj1">{{ obj1 }}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-4 mt-4 mb-4">
+        <div class="card btn" (click)="setBHK('1bhk')">
+          <div class="card-body">
+            <h4>1BHK</h4>
+            <h6 *ngIf="obj2">{{ obj2 }}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-4 mt-4 mb-4">
+        <div class="card btn" (click)="setBHK('2bhk')">
+          <div class="card-body">
+            <h4>2BHK</h4>
+            <h6 *ngIf="obj3">{{ obj3 }}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-4 mt-4 mb-4">
+        <div class="card btn" (click)="setBHK('3bhk')">
+          <div class="card-body">
+            <h4>3BHK</h4>
+            <h6 *ngIf="obj4">{{ obj4 }}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-4 mt-4 mb-4">
+        <div class="card btn" (click)="setBHK('4bhk')">
+          <div class="card-body">
+            <h4>4BHK</h4>
+            <h6 *ngIf="obj5">{{ obj5 }}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <div class="container">
+      <h6 class="mt-5">Top Localities in Chennai</h6>
+      <div class="row mt-3">
+        <div class="col">
+          <button type="button" class="btn btn-primary btn-shadow mr-2" data-filter="all">All Locations</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="new-york" (click)="filterloc()">Chennai</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="los-angeles" (click)="fil()">Mumbai</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="chicago">Chicago</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="san-francisco">San Francisco</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="new-york">New York</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="los-angeles">Los Angeles</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="chicago">Chicago</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="san-francisco">San Francisco</button>
+          <button type="button" class="btn btn-outline-primary btn-shadow mr-2" data-filter="new-york">New York</button>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="card mt-5" *ngFor="let ob of Pro">
+          <div class="card-header bg-primary text-white">
+            <h2 class="ml-3">{{ob.propertyName}}</h2>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><strong>Price:</strong> {{ob.propertyPrice}}</p>
+            <p class="card-text"><strong>Localities:</strong> {{ob.propertyLocation}}</p>
+            <p class="card-text"><strong>BHK:</strong> {{ob.propertyBHK}}</p>
+          </div>
+          <div class="card-footer bg-light d-flex justify-content-between">
+            <div>
+              <p class="mb-0"><strong>Status:</strong> {{ob.propertyStatus}}</p>
+            </div>
+            <div>
+              <p class="mb-0"><strong>Type:</strong> {{ob.propertyType}}</p>
+            </div>
+            <div>
+              <p class="mb-0"><strong>Property:</strong> {{ob.propertyReside}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <div class="container bg-default text-center mt-5">
+      <div class="container">
+        <h6>WHAT OUR CLIENTS SAY</h6>
+        <h2>Testimonials</h2>
+        <div class="row row-50">
+          <div class="col-md-6 col-lg-4">
+            <article class="quote-review"><img class="quote-review__image" src="assets/person2.jpg" alt="" width="96" height="96"/>
+              <h4>Superb!</h4>
+              <div class="quote-review__body">
+                <p>Your property managers have been active in their response to repairs and always patient with our frustrations. You have always found us wonderful tenants. Thank you for the amazing customer service!</p>
+                <p class="cite">Mark Simmons</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="quote-review"><img class="quote-review__image" src="assets/person5.jpg" alt="" width="96" height="96"/>
+              <h4>Incredible!</h4>
+              <div class="quote-review__body">
+                <p>I’ve recently rented an apartment through your site, and have been looked after by James Thompson. He provided me with utmost support on every property issue. I will surely recommend your services to my friends!</p>
+                <p class="cite">Jane Wilson</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="quote-review"><img class="quote-review__image" src="assets/photo-1438761681033-6461ffad8d80.jpeg" alt="" width="96" height="96"/>
+              <h4>Exceptional!</h4>
+              <div class="quote-review__body">
+                <p>I have always found your team to be extremely prompt and professional with all dealings I have had with them. You always keep me updated on the progress of my apartment’s rental. Thank you!</p>
+                <p class="cite">Peter Smith</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+    
+
+
+    
+    
+
+
+      
+    
+</body>
+</html>
